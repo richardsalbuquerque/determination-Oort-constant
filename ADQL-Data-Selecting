@@ -1,0 +1,17 @@
+# Selection Criteria
+(i)   Distances less than 500 pc;
+
+(ii)  Galactic latitudes less than 2° in module;
+
+(iii) Parallax errors less than 2%;
+
+(iv)  Proper motion errors less than 2%;
+
+--Gaia telescope website: https://gea.esac.esa.int/archive/
+-- Parameter documentation: https://gea.esac.esa.int/archive/documentation/GEDR3/Gaia_archive/chap_datamodel/sec_dm_main_tables/ssec_dm_gaia_source.html
+-- In Advanced ADQL: paste the line of code below
+
+SELECT top 300000 
+	ra, dec, parallax, l, b, pm, pmra, pmdec
+FROM gaiaedr3.gaia_source
+WHERE parallax > 2 AND abs(b) < 2 AND parallax_error < parallax_error*(2/100) AND pmra_error < pmra_error*(2/100) AND pmdec_error < pmdec_error*(2/100)
